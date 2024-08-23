@@ -11,18 +11,18 @@ def log(arg1: str) -> None:
 
 
 class FloatVector:
-    def append(self, arg1: 'FloatVector', arg2: Any) -> None:
+    def append(self, arg2: Any) -> None:
         return
 
-    def extend(self, arg1: 'FloatVector', arg2: Any) -> None:
+    def extend(self, arg2: Any) -> None:
         return
 
 
 class IntVector:
-    def append(self, arg1: 'IntVector', arg2: Any) -> None:
+    def append(self, arg2: Any) -> None:
         return
 
-    def extend(self, arg1: 'IntVector', arg2: Any) -> None:
+    def extend(self, arg2: Any) -> None:
         return
 
 
@@ -31,18 +31,18 @@ class LimitationError:
 
 
 class ObjectVector:
-    def append(self, arg1: 'ObjectVector', arg2: Any) -> None:
+    def append(self, arg2: Any) -> None:
         return
 
-    def extend(self, arg1: 'ObjectVector', arg2: Any) -> None:
+    def extend(self, arg2: Any) -> None:
         return
 
 
 class StringVector:
-    def append(self, arg1: 'StringVector', arg2: Any) -> None:
+    def append(self, arg2: Any) -> None:
         return
 
-    def extend(self, arg1: 'StringVector', arg2: Any) -> None:
+    def extend(self, arg2: Any) -> None:
         return
 
 
