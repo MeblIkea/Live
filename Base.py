@@ -10,7 +10,7 @@ def log(arg1: str) -> None:
     """
 
 
-class FloatVector:
+class Vector(tuple):
     def append(self, arg2: Any) -> None:
         return
 
@@ -18,48 +18,32 @@ class FloatVector:
         return
 
 
-class IntVector:
-    def append(self, arg2: Any) -> None:
-        return
+class FloatVector(Vector):
+    pass
 
-    def extend(self, arg2: Any) -> None:
-        return
+
+class IntVector(Vector):
+    pass
+
+
+class ObjectVector(Vector):
+    pass
+
+
+class StringVector(Vector):
+    pass
 
 
 class LimitationError:
     pass
 
 
-class ObjectVector:
-    def append(self, arg2: Any) -> None:
-        return
-
-    def extend(self, arg2: Any) -> None:
-        return
-
-
-class StringVector:
-    def append(self, arg2: Any) -> None:
-        return
-
-    def extend(self, arg2: Any) -> None:
-        return
-
-
 class Timer:
-    def restart(self, arg1: 'Timer') -> None:
+    def restart(self) -> None:
         return
 
-    def start(self, arg1: 'Timer') -> None:
+    def start(self) -> None:
         return
 
-    def stop(self, arg1: 'Timer') -> None:
-        return
-
-
-class Vector:
-    def append(self, arg1: 'Vector', arg2: Any) -> None:
-        return
-
-    def extend(self, arg1: 'Vector', arg2: Any) -> None:
+    def stop(self) -> None:
         return

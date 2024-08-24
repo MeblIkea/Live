@@ -1,217 +1,288 @@
 ﻿from typing import Any
-
-from Live import Base
+from Live.Base import Vector
 from Live.Device import Device
+from Live.GroovePool import GroovePool
+from Live.Scene import Scene
+from Live.Track import Track
+
+
+class CuePoint:
+    @property
+    def _live_ptr(self) -> int:
+        """
+        Get the pointer to the Live Object.
+        """
+        return 0
+
+    @property
+    def canonical_parent(self):
+        """
+        Get the canonical parent of the Cue Point.
+        """
+        return
+
+    @property
+    def name(self) -> str:
+        """
+        Get/Listen to the name of the Cue Point.
+        """
+        return ''
+
+    @property
+    def time(self) -> float:
+        """
+        Get/Listen to the Cue Point's time in beats.
+        """
+        return 0.0
+
+    def add_name_listener(self, arg2: Any) -> None:
+        """
+        Add a listener to when the property "name" changes.
+        """
+        return
+
+    def add_time_listener(self, arg2: Any) -> None:
+        """
+        Add a listener to when the property "time" changes.
+        """
+        return
+
+    def jump(self) -> None:
+        """
+        When the Song is playing, set the playing-position quantized to this Cue point's time.
+        When not playing, simply move the start playing position.
+        """
+
+    def name_has_listener(self, arg2: Any) -> bool:
+        """
+        Check if a listener is registered to the property "name"
+        """
+        return False
+
+    def remove_name_listener(self, arg2: Any) -> None:
+        """
+        Remove a listener from the property "name"
+        """
+        return
+
+    def remove_time_listener(self, arg2: Any) -> None:
+        """
+        Remove a listener from the property "time"
+        """
+        return
+
+    def time_has_listener(self, arg2: Any) -> bool:
+        """
+        Check if a listener is registered to the property "time"
+        """
+        return False
 
 
 class Song:
+    class View:
+        @property
+        def _live_ptr(self) -> int:
+            """
+            Get the pointer to the Live Object.
+            """
+            return 0
+
+        @property
+        def canonical_parent(self):
+            """
+            Get the canonical parent of the song view.
+            """
+            return
+
+        @property
+        def detail_clip(self):
+            """
+            Get/Set the Clip that is currently visible in Live's Detail view.
+            """
+            return
+
+        @property
+        def draw_mode(self) -> bool:
+            """
+            Get/Set if the Envelope/Note draw mode is enabled.
+            """
+            return False
+
+        @property
+        def follow_song(self) -> bool:
+            """
+            Get/Set if the Arrangement view should scroll to show the play marker.
+            """
+            return False
+
+        @property
+        def highlighted_clip_slot(self):
+            """
+            Get/Set the clip slot, defined via the highlighted track and scene in the Session. Will be None for Master and Send tracks.
+            """
+            return
+
+        @property
+        def selected_chain(self):
+            """
+            Get the highlighted chain if available.
+            """
+            return
+
+        @property
+        def selected_parameter(self):
+            """
+            Get the currently selected device parameter.
+            """
+            return
+
+        @property
+        def selected_scene(self):
+            """
+            Get/Set the currently selected scene in Live's Session view.
+            """
+            return
+
+        @property
+        def selected_track(self):
+            """
+            Get/Set the currently selected Track in Live's Session or Arrangement view.
+            """
+            return
+
+        def add_detail_clip_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "detail_clip" changes.
+            """
+            return
+
+        def add_draw_mode_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "draw_mode" changes.
+            """
+            return
+
+        def add_follow_song_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "follow_song" changes.
+            """
+            return
+
+        def add_selected_chain_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "selected_chain" changes.
+            """
+            return
+
+        def add_selected_parameter_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "selected_parameter" changes.
+            """
+            return
+
+        def add_selected_scene_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "selected_scene" changes.
+            """
+            return
+
+        def add_selected_track_listener(self, arg2: Any) -> None:
+            """
+            Add a listener to when the property "selected_track" changes.
+            """
+            return
+
+        def detail_clip_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "detail_clip"
+            """
+            return False
+
+        def draw_mode_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "draw_mode"
+            """
+            return False
+
+        def follow_song_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "follow_song"
+            """
+            return False
+
+        def remove_detail_clip_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "detail_clip"
+            """
+            return
+
+        def remove_draw_mode_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "draw_mode"
+            """
+            return
+
+        def remove_follow_song_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "follow_song"
+            """
+            return
+
+        def remove_selected_chain_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "selected_chain"
+            """
+            return
+
+        def remove_selected_parameter_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "selected_parameter"
+            """
+            return
+
+        def remove_selected_scene_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "selected_scene"
+            """
+            return
+
+        def remove_selected_track_listener(self, arg2: Any) -> None:
+            """
+            Remove a listener from the property "selected_track"
+            """
+            return
+
+        def select_device(self, arg2: Device, ShouldAppointDevice: bool = True) -> None:
+            """
+            Select the given device.
+            """
+            return
+
+        def selected_chain_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "selected_chain"
+            """
+            return False
+
+        def selected_parameter_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "selected_parameter"
+            """
+            return False
+
+        def selected_scene_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "selected_scene"
+            """
+            return False
+
+        def selected_track_has_listener(self, arg2: Any) -> bool:
+            """
+            Check if a listener is registered to the property "selected_track"
+            """
+            return False
+
     """
-    <Class>Live.Song.Song<Description>Class</Description></Class>
-
-    <Doc>	This class represents a Live set.</Doc>
-
-    <Property>Live.Song.Song._live_ptr<Description>Property</Description></Property>
-
-    <Property>Live.Song.Song.appointed_device<Description>Property</Description></Property>
-
-    <Doc>	Read, write, and listen access to the appointed Device</Doc>
-
-    <Property>Live.Song.Song.arrangement_overdub<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the global arrangement overdub state.</Doc>
-
-    <Property>Live.Song.Song.back_to_arranger<Description>Property</Description></Property>
-
-    <Doc>	Get/Set if triggering a Clip in the Session, disabled the playback ofClips in the Arranger.</Doc>
-
-    <Property>Live.Song.Song.can_capture_midi<Description>Property</Description></Property>
-
-    <Doc>	Get whether there currently is material to be captured on any tracks.</Doc>
-
-    <Property>Live.Song.Song.can_jump_to_next_cue<Description>Property</Description></Property>
-
-    <Doc>	Returns true when there is a cue marker right to the playing pos thatwe could jump to.</Doc>
-
-    <Property>Live.Song.Song.can_jump_to_prev_cue<Description>Property</Description></Property>
-
-    <Doc>	Returns true when there is a cue marker left to the playing pos thatwe could jump to.</Doc>
-
-    <Property>Live.Song.Song.can_redo<Description>Property</Description></Property>
-
-    <Doc>	Returns true if there is an undone action that we can redo.</Doc>
-
-    <Property>Live.Song.Song.can_undo<Description>Property</Description></Property>
-
-    <Doc>	Returns true if there is an action that we can restore.</Doc>
-
-    <Property>Live.Song.Song.canonical_parent<Description>Property</Description></Property>
-
-    <Doc>	Get the canonical parent of the song.</Doc>
-
-    <Property>Live.Song.Song.clip_trigger_quantization<Description>Property</Description></Property>
-
-    <Doc>	Get/Set access to the quantization settings that are used to fireClips in the Session.</Doc>
-
-    <Property>Live.Song.Song.count_in_duration<Description>Property</Description></Property>
-
-    <Doc>	Get the count in duration. Returns an index, mapped as follows: 0 - None, 1 - 1 Bar, 2 - 2 Bars, 3 - 4 Bars.</Doc>
-
-    <Property>Live.Song.Song.cue_points<Description>Property</Description></Property>
-
-    <Doc>	Const access to a list of all cue points of the Live Song.</Doc>
-
-    <Property>Live.Song.Song.current_song_time<Description>Property</Description></Property>
-
-    <Doc>	Get/Set access to the songs current playing position in ms.</Doc>
-
-    <Property>Live.Song.Song.exclusive_arm<Description>Property</Description></Property>
-
-    <Doc>	Get if Tracks should be armed exclusively by default.</Doc>
-
-    <Property>Live.Song.Song.exclusive_solo<Description>Property</Description></Property>
-
-    <Doc>	Get if Tracks should be soloed exclusively by default.</Doc>
-
-    <Property>Live.Song.Song.groove_amount<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the global groove amount, that adjust all setup groovesin all clips.</Doc>
-
-    <Property>Live.Song.Song.groove_pool<Description>Property</Description></Property>
-
-    <Doc>	Get the groove pool.</Doc>
-
-    <Property>Live.Song.Song.is_counting_in<Description>Property</Description></Property>
-
-    <Doc>	Get whether currently counting in.</Doc>
-
-    <Property>Live.Song.Song.is_playing<Description>Property</Description></Property>
-
-    <Doc>	Returns true if the Song is currently playing.</Doc>
-
-    <Property>Live.Song.Song.last_event_time<Description>Property</Description></Property>
-
-    <Doc>	Return the time of the last set event in the song. In contrary tosong_length, this will not add some extra beats that are mostly neededfor Display purposes in the Arrangerview.</Doc>
-
-    <Property>Live.Song.Song.loop<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the looping flag that en/disables the usage of the globalloop markers in the song.</Doc>
-
-    <Property>Live.Song.Song.loop_length<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the length of the global loop marker position in beats.</Doc>
-
-    <Property>Live.Song.Song.loop_start<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the start of the global loop marker position in beats.</Doc>
-
-    <Property>Live.Song.Song.master_track<Description>Property</Description></Property>
-
-    <Doc>	Access to the Master Track (always available)</Doc>
-
-    <Property>Live.Song.Song.metronome<Description>Property</Description></Property>
-
-    <Doc>	Get/Set if the metronom is audible.</Doc>
-
-    <Property>Live.Song.Song.midi_recording_quantization<Description>Property</Description></Property>
-
-    <Doc>	Get/Set access to the settings that are used to quantizeMIDI recordings.</Doc>
-
-    <Property>Live.Song.Song.nudge_down<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the status of the nudge down button.</Doc>
-
-    <Property>Live.Song.Song.nudge_up<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the status of the nudge up button.</Doc>
-
-    <Property>Live.Song.Song.overdub<Description>Property</Description></Property>
-
-    <Doc>	Legacy hook for Live 8 overdub state. Now hooks tosession record, but never starts playback.</Doc>
-
-    <Property>Live.Song.Song.punch_in<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the flag that will enable recording as soon as the Song playsand hits the global loop start region.</Doc>
-
-    <Property>Live.Song.Song.punch_out<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the flag that will disable recording as soon as the Song playsand hits the global loop end region.</Doc>
-
-    <Property>Live.Song.Song.re_enable_automation_enabled<Description>Property</Description></Property>
-
-    <Doc>	Returns true if some automated parameter has been overriden</Doc>
-
-    <Property>Live.Song.Song.record_mode<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the state of the global recording flag.</Doc>
-
-    <Property>Live.Song.Song.return_tracks<Description>Property</Description></Property>
-
-    <Doc>	Const access to the list of available Return Tracks.</Doc>
-
-    <Property>Live.Song.Song.root_note<Description>Property</Description></Property>
-
-    <Doc>	Set and access the root note (i.e. key) of the song used for control surfaces. The root note can be a number between 0 and 11, with 0 corresponding to C and 11 corresponding to B.</Doc>
-
-    <Property>Live.Song.Song.scale_intervals<Description>Property</Description></Property>
-
-    <Doc>	Reports the current scale's intervals as a list of integers, starting with the root note and representing the number of halfsteps (e.g. Major -&gt; 0, 2, 4, 5, 7, 9, 11)</Doc>
-
-    <Property>Live.Song.Song.scale_name<Description>Property</Description></Property>
-
-    <Doc>	Set and access the last used scale name for control surfaces. The default scale names that can be saved with a set and recalled are'Major', 'Minor', 'Dorian', 'Mixolydian' ,'Lydian' ,'Phrygian' ,'Locrian', 'Whole Tone', 'Half-whole Dim.', 'Whole-half Dim.', 'Minor Blues', 'Minor Pentatonic', 'Major Pentatonic', 'Harmonic Minor', 'Harmonic Major', 'Dorian #4', 'Phrygian Dominant', 'Melodic Minor', 'Lydian Augmented', 'Lydian Dominant', 'Super Locrian', 'Bhairav', 'Hungarian Minor', '8-Tone Spanish', 'Hirajoshi', 'In-Sen', 'Iwato', 'Kumoi', 'Pelog Selisir', 'Pelog Tembung', 'Messaien 3', 'Messaien 4', 'Messaien 5', 'Messaien 6', 'Messaien 7'</Doc>
-
-    <Property>Live.Song.Song.scenes<Description>Property</Description></Property>
-
-    <Doc>	Const access to a list of all Scenes in the Live Song.</Doc>
-
-    <Property>Live.Song.Song.select_on_launch<Description>Property</Description></Property>
-
-    <Doc>	Get if Scenes and Clips should be selected when fired.</Doc>
-
-    <Property>Live.Song.Song.session_automation_record<Description>Property</Description></Property>
-
-    <Doc>	Returns true if automation recording is enabled.</Doc>
-
-    <Property>Live.Song.Song.session_record<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the session record state.</Doc>
-
-    <Property>Live.Song.Song.session_record_status<Description>Property</Description></Property>
-
-    <Doc>	Get the session slot-recording state.</Doc>
-
-    <Property>Live.Song.Song.signature_denominator<Description>Property</Description></Property>
-
-    <Doc>	Get/Set access to the global signature denominator of the Song.</Doc>
-
-    <Property>Live.Song.Song.signature_numerator<Description>Property</Description></Property>
-
-    <Doc>	Get/Set access to the global signature numerator of the Song.</Doc>
-
-    <Property>Live.Song.Song.song_length<Description>Property</Description></Property>
-
-    <Doc>	Return the time of the last set event in the song, plus som extra beatsthat are usually added for better navigation in the arrangerview.</Doc>
-
-    <Property>Live.Song.Song.swing_amount<Description>Property</Description></Property>
-
-    <Doc>	Get/Set access to the amount of swing that is applied when adding or quantizing notes to MIDI clips</Doc>
-
-    <Property>Live.Song.Song.tempo<Description>Property</Description></Property>
-
-    <Doc>	Get/Set the global project tempo.</Doc>
-
-    <Property>Live.Song.Song.tracks<Description>Property</Description></Property>
-
-    <Doc>	Const access to a list of all Player Tracks in the Live Song, exludingthe return and Master Track (see also Song.send_tracks and Song.master_track).At least one MIDI or Audio Track is always available.</Doc>
-
-    <Property>Live.Song.Song.view<Description>Property</Description></Property>
-
-    <Doc>	Representing the view aspects of a Live document: The Session and Arrangerview.</Doc>
-
-    <Property>Live.Song.Song.visible_tracks<Description>Property</Description></Property>
-
-    <Doc>	Const access to a list of all visible Player Tracks in the Live Song, exludingthe return and Master Track (see also Song.send_tracks and Song.master_track).At least one MIDI or Audio Track is always available.</Doc>
-
     <Method>Live.Song.Song.add_appointed_device_listener()<Description>Method</Description></Method>
 
     <Doc>	add_appointed_device_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "appointed_device" has changed. C++ signature :  void add_appointed_device_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
@@ -954,11 +1025,11 @@ class Song:
         return 0
 
     @property
-    def cue_points(self) -> Base.Vector:
+    def cue_points(self) -> Vector:
         """
         Get the cue points in the song.
         """
-        return Base.Vector()
+        return Vector()
 
     @property
     def current_song_time(self) -> float:
@@ -989,8 +1060,240 @@ class Song:
         return 0.0
 
     @property
-    def groove_pool(self) -> 'GroovePool.GroovePool':
+    def groove_pool(self) -> 'GroovePool':
         """
         Get the groove pool.
         """
-        return GroovePool.GroovePool()
+        return GroovePool()
+
+    @property
+    def is_counting_in(self) -> bool:
+        """
+        Get whether the song is currently counting in.
+        """
+        return False
+
+    @property
+    def is_playing(self) -> bool:
+        """
+        Get whether the song is currently playing.
+        """
+        return False
+
+    @property
+    def last_event_time(self) -> float:
+        """
+        Get the time of the last event.
+        """
+        return 0.0
+
+    @property
+    def loop(self) -> bool:
+        """
+        Get/Set the looping flag that en/disables the usage of the globalloop markers in the song.
+        """
+        return False
+
+    @property
+    def loop_length(self) -> float:
+        """
+        Get/Set the length of the global loop marker position in beats.
+        """
+        return 0.0
+
+    @property
+    def loop_start(self) -> float:
+        """
+        Get/Set the start of the global loop marker position in beats.
+        """
+        return 0.0
+
+    @property
+    def master_track(self) -> 'Track':
+        """
+        Get the master track.
+        """
+        return Track()
+
+    @property
+    def metronome(self) -> bool:
+        """
+        Get/Set the metronome state.
+        """
+        return False
+
+    @property
+    def midi_recording_quantization(self) -> int:
+        """
+        Get/Set the global MIDI recording quantization.
+        """
+        return 0
+
+    @property
+    def nudge_down(self) -> bool:
+        """
+        Get/Set the nudge down state.
+        """
+        return False
+
+    @property
+    def nudge_up(self) -> bool:
+        """
+        Get/Set the nudge up state.
+        """
+        return False
+
+    @property
+    def overdub(self) -> bool:
+        """
+        Legacy hook for Live 8 overdub state. Now hooks to session record, but never starts playback.
+        """
+        return False
+
+    @property
+    def punch_in(self) -> bool:
+        """
+        Get/Set the global punch in state.
+        """
+        return False
+
+    @property
+    def punch_out(self) -> bool:
+        """
+        Get/Set the global punch out state.
+        """
+        return False
+
+    @property
+    def re_enable_automation_enabled(self) -> bool:
+        """
+        Get/Set the re-enable automation state.
+        """
+        return False
+
+    @property
+    def record_mode(self) -> int:
+        """
+        Get/Set the record mode.
+        """
+        return 0
+
+    @property
+    def return_tracks(self) -> Vector[Track]:
+        """
+        Get the return tracks.
+        """
+        return Vector()
+
+    @property
+    def root_note(self) -> int:
+        """
+        Set and access the root note (i.e. key) of the song used for control surfaces. The root note can be a number between 0 and 11, with 0 corresponding to C and 11 corresponding to B.
+        """
+        return 0
+
+    @property
+    def scale_intervals(self) -> list[int]:
+        """
+        Reports the current scale's intervals as a list of integers, starting with the root note and representing the number of half steps (e.g. Major -> 0, 2, 4, 5, 7, 9, 11)
+        """
+        return []
+
+    @property
+    def scale_name(self) -> str:
+        """
+        Reports the current scale's name.
+        """
+        return ''
+
+    @property
+    def scenes(self) -> Vector[Scene]:
+        """
+        Get the scenes.
+        """
+        return Vector()
+
+    @property
+    def select_on_launch(self) -> bool:
+        """
+        Get if Scenes and Clips should be selected when fired.
+        """
+        return False
+
+    @property
+    def session_automation_record(self) -> bool:
+        """
+        Get the session automation record state.
+        """
+        return False
+
+    @property
+    def session_record(self) -> bool:
+        """
+        Get the session record state.
+        """
+        return False
+
+    @property
+    def session_record_status(self) -> int:
+        """
+        Get the session slot-recording state.
+        """
+        return 0
+
+    @property
+    def signature_denominator(self) -> int:
+        """
+        Get/Set the global time signature denominator.
+        """
+        return 0
+
+    @property
+    def signature_numerator(self) -> int:
+        """
+        Get/Set the global time signature numerator.
+        """
+        return 0
+
+    @property
+    def song_length(self) -> float:
+        """
+        Get the song length in beats.
+        """
+        return 0.0
+
+    @property
+    def swing_amount(self) -> float:
+        """
+        Get/Set the global swing amount.
+        """
+        return 0.0
+
+    @property
+    def tempo(self) -> float:
+        """
+        Get/Set the global tempo.
+        """
+        return 0.0
+
+    @property
+    def tracks(self) -> Vector[Track]:
+        """
+        Get the tracks.
+        """
+        return Vector()
+
+    @property
+    def view(self) -> 'Song.View':
+        """
+        Get the view object.
+        """
+        return Song.View()
+
+    @property
+    def visible_tracks(self) -> Vector[Track]:
+        """
+        Get the visible tracks.
+        """
+        return Vector()
+
