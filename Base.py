@@ -1,4 +1,5 @@
-﻿from typing import Any
+﻿# All referenced (missing descriptions)
+from typing import Any, Iterable
 
 
 def log(arg1: str) -> None:
@@ -10,7 +11,10 @@ def log(arg1: str) -> None:
     """
 
 
-class Vector(tuple):
+class Vector(Iterable):
+    def __iter__(self):
+        return self
+
     def append(self, arg2: Any) -> None:
         return
 

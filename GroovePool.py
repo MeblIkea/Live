@@ -1,8 +1,12 @@
-﻿from typing import Callable
+﻿# All referenced
+from typing import Callable
 from Live.Groove import Groove
 
 
 class GroovePool:
+    """
+    This class represents the groove pool in Live.
+    """
     @property
     def _live_ptr(self) -> int:
         """

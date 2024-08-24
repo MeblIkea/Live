@@ -1,5 +1,6 @@
-﻿from typing import List, Optional, Callable, Any
-
+﻿# All referenced (missing descriptions)
+from typing import Optional, Callable, Any
+from Live.Base import Vector
 from Live.Browser import Browser
 from Live.Song import Song
 from ableton.v3.control_surface import ControlSurface
@@ -86,11 +87,11 @@ class Application:
         return 0
 
     @property
-    def unavailable_features(self) -> List[str]:
+    def unavailable_features(self) -> 'UnavailableFeatureVector':
         """
         :return: List of unavailable features due to current edition of Ableton Live.
         """
-        return []
+        return UnavailableFeatureVector()
 
     @property
     def view(self) -> 'Application.View':
@@ -358,9 +359,9 @@ class UnavailableFeature:
         return
 
 
-class UnavailableFeatureVector:
-    def append(self, arg2: Any) -> None:
+class UnavailableFeatureVector(Vector):
+    def append(self, arg2: UnavailableFeature) -> None:
         pass
 
-    def extend(self, arg2: Any) -> None:
+    def extend(self, arg2: UnavailableFeature) -> None:
         pass
