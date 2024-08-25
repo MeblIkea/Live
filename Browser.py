@@ -95,59 +95,22 @@ class BrowserItemVector(Vector):
 
 
 class Relation:
-    @property
-    def ancestor(self):
-        return
-
-    @property
-    def descendant(self):
-        return
-
-    @property
-    def equal(self):
-        return
-
-    @property
-    def parent(self):
-        return
+    ancestor = None
+    descendant = None
+    equal = None
+    parent = None
 
 
 class FilterType:
-    @property
-    def audio_effect_hotswap(self):
-        return
-
-    @property
-    def count(self) -> int:
-        return 0
-
-    @property
-    def disabled(self) -> bool:
-        return False
-
-    @property
-    def drum_pad_hotswap(self):
-        return
-
-    @property
-    def hotswap_off(self):
-        return
-
-    @property
-    def instrument_hotswap(self):
-        return
-
-    @property
-    def midi_effect_hotswap(self):
-        return
-
-    @property
-    def midi_track_devices(self):
-        return
-
-    @property
-    def samples(self):
-        return
+    audio_effect_hotswap = None
+    count = 0
+    disabled = False
+    drum_pad_hotswap = None
+    hotswap_off = None
+    instrument_hotswap = None
+    midi_effect_hotswap = None
+    midi_track_devices = None
+    samples = None
 
 
 class Browser:

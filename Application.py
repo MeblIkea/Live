@@ -336,27 +336,14 @@ class Application:
             """
 
         class NavDirection:
-            @property
-            def down(self):
-                return
-
-            @property
-            def left(self):
-                return
-
-            @property
-            def right(self):
-                return
-
-            @property
-            def up(self):
-                return
+            down = None
+            left = None
+            right = None
+            up = None
 
 
 class UnavailableFeature:
-    @property
-    def note_velocity_ranges_and_probabilities(self):
-        return
+    note_velocity_ranges_and_probabilities = None
 
 
 class UnavailableFeatureVector(Vector):

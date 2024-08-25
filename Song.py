@@ -1,9 +1,67 @@
-﻿from typing import Any
+﻿from typing import Any, Callable
 from Live.Base import Vector
 from Live.Device import Device
 from Live.GroovePool import GroovePool
 from Live.Scene import Scene
 from Live.Track import Track
+
+
+def get_all_scales_ordered() -> tuple:
+    """
+    Get an ordered tuple of tuples of all available scale names to intervals.
+    """
+    return ()
+
+
+class BeatTime:
+    """
+    Represents a Time, splitted into Bars, Beats, SubDivision and Ticks.
+    """
+
+    @property
+    def bars(self) -> int:
+        """
+        Get the number of Bars.
+        """
+        return 0
+
+    @property
+    def beats(self) -> int:
+        """
+        Get the number of Beats.
+        """
+        return 0
+
+    @property
+    def sub_division(self) -> int:
+        """
+        Get the number of SubDivisions.
+        """
+        return 0
+
+    @property
+    def ticks(self) -> int:
+        """
+        Get the number of Ticks.
+        """
+        return 0
+
+
+class CaptureDestination:
+    """
+    The destination for MIDI capture.
+    """
+    arrangement = None
+    auto = None
+    session = None
+
+
+class CaptureMode:
+    """
+    The mode for capturing clips.
+    """
+    all = None
+    all_except_selected = None
 
 
 class CuePoint:
@@ -76,6 +134,48 @@ class CuePoint:
         Check if a listener is registered to the property "time"
         """
         return False
+
+
+class Quantization:
+    q_2_bars = None
+    q_4_bars = None
+    q_8_bars = None
+    q_bar = None
+    q_eight = None
+    q_eight_triplet = None
+    q_half = None
+    q_half_triplet = None
+    q_no_q = None
+    q_quarter = None
+    q_quarter_triplet = None
+    q_sixteenth = None
+    q_sixteenth_triplet = None
+    q_thirtyworth = None
+
+
+class RecordingQuantization:
+    rec_q_eight = None
+    rec_q_eight_eight_triplet = None
+    rec_q_eight_triplet = None
+    req_q_no_q = None
+    rec_q_quarter = None
+    req_q_sixteenth = None
+    req_q_sixteenth_sixteenth_triplet = None
+    rec_q_sixteenth_triplet = None
+    rec_q_thirtysecond = None
+
+
+class SessionRecordStatus:
+    off = None
+    on = None
+    transition = None
+
+
+class SmptTime:
+    frames = None
+    hours = None
+    minutes = None
+    seconds = None
 
 
 class Song:
@@ -281,664 +381,6 @@ class Song:
             Check if a listener is registered to the property "selected_track"
             """
             return False
-
-    """
-    <Method>Live.Song.Song.add_appointed_device_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_appointed_device_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "appointed_device" has changed. C++ signature :  void add_appointed_device_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_arrangement_overdub_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_arrangement_overdub_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "arrangement_overdub" has changed. C++ signature :  void add_arrangement_overdub_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_back_to_arranger_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_back_to_arranger_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "back_to_arranger" has changed. C++ signature :  void add_back_to_arranger_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_can_capture_midi_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_can_capture_midi_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "can_capture_midi" has changed. C++ signature :  void add_can_capture_midi_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_can_jump_to_next_cue_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_can_jump_to_next_cue_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "can_jump_to_next_cue" has changed. C++ signature :  void add_can_jump_to_next_cue_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_can_jump_to_prev_cue_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_can_jump_to_prev_cue_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "can_jump_to_prev_cue" has changed. C++ signature :  void add_can_jump_to_prev_cue_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_clip_trigger_quantization_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_clip_trigger_quantization_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "clip_trigger_quantization" has changed. C++ signature :  void add_clip_trigger_quantization_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_count_in_duration_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_count_in_duration_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "count_in_duration" has changed. C++ signature :  void add_count_in_duration_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_cue_points_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_cue_points_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "cue_points" has changed. C++ signature :  void add_cue_points_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_current_song_time_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_current_song_time_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "current_song_time" has changed. C++ signature :  void add_current_song_time_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_data_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_data_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "data" has changed. C++ signature :  void add_data_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_exclusive_arm_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_exclusive_arm_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "exclusive_arm" has changed. C++ signature :  void add_exclusive_arm_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_groove_amount_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_groove_amount_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "groove_amount" has changed. C++ signature :  void add_groove_amount_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_is_counting_in_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_is_counting_in_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "is_counting_in" has changed. C++ signature :  void add_is_counting_in_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_is_playing_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_is_playing_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "is_playing" has changed. C++ signature :  void add_is_playing_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_loop_length_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_loop_length_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "loop_length" has changed. C++ signature :  void add_loop_length_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_loop_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_loop_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "loop" has changed. C++ signature :  void add_loop_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_loop_start_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_loop_start_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "loop_start" has changed. C++ signature :  void add_loop_start_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_metronome_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_metronome_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "metronome" has changed. C++ signature :  void add_metronome_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_midi_recording_quantization_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_midi_recording_quantization_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "midi_recording_quantization" has changed. C++ signature :  void add_midi_recording_quantization_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_nudge_down_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_nudge_down_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "nudge_down" has changed. C++ signature :  void add_nudge_down_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_nudge_up_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_nudge_up_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "nudge_up" has changed. C++ signature :  void add_nudge_up_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_overdub_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_overdub_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "overdub" has changed. C++ signature :  void add_overdub_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_punch_in_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_punch_in_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "punch_in" has changed. C++ signature :  void add_punch_in_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_punch_out_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_punch_out_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "punch_out" has changed. C++ signature :  void add_punch_out_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_re_enable_automation_enabled_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_re_enable_automation_enabled_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "re_enable_automation_enabled" has changed. C++ signature :  void add_re_enable_automation_enabled_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_record_mode_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_record_mode_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "record_mode" has changed. C++ signature :  void add_record_mode_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_return_tracks_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_return_tracks_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "return_tracks" has changed. C++ signature :  void add_return_tracks_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_root_note_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_root_note_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "root_note" has changed. C++ signature :  void add_root_note_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_scale_intervals_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_scale_intervals_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "scale_intervals" has changed. C++ signature :  void add_scale_intervals_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_scale_name_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_scale_name_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "scale_name" has changed. C++ signature :  void add_scale_name_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_scenes_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_scenes_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "scenes" has changed. C++ signature :  void add_scenes_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_session_automation_record_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_session_automation_record_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "session_automation_record" has changed. C++ signature :  void add_session_automation_record_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_session_record_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_session_record_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "session_record" has changed. C++ signature :  void add_session_record_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_session_record_status_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_session_record_status_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "session_record_status" has changed. C++ signature :  void add_session_record_status_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_signature_denominator_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_signature_denominator_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "signature_denominator" has changed. C++ signature :  void add_signature_denominator_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_signature_numerator_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_signature_numerator_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "signature_numerator" has changed. C++ signature :  void add_signature_numerator_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_song_length_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_song_length_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "song_length" has changed. C++ signature :  void add_song_length_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_swing_amount_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_swing_amount_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "swing_amount" has changed. C++ signature :  void add_swing_amount_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_tempo_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_tempo_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "tempo" has changed. C++ signature :  void add_tempo_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_tracks_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_tracks_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "tracks" has changed. C++ signature :  void add_tracks_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.add_visible_tracks_listener()<Description>Method</Description></Method>
-
-    <Doc>	add_visible_tracks_listener( (Song)arg1, (object)arg2) -&gt; None : Add a listener function or method, which will be called as soon as the property "visible_tracks" has changed. C++ signature :  void add_visible_tracks_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.appointed_device_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	appointed_device_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "appointed_device". C++ signature :  bool appointed_device_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.arrangement_overdub_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	arrangement_overdub_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "arrangement_overdub". C++ signature :  bool arrangement_overdub_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.back_to_arranger_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	back_to_arranger_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "back_to_arranger". C++ signature :  bool back_to_arranger_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.begin_undo_step()<Description>Method</Description></Method>
-
-    <Doc>	begin_undo_step( (Song)arg1) -&gt; None : C++ signature :  void begin_undo_step(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.can_capture_midi_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	can_capture_midi_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "can_capture_midi". C++ signature :  bool can_capture_midi_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.can_jump_to_next_cue_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	can_jump_to_next_cue_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "can_jump_to_next_cue". C++ signature :  bool can_jump_to_next_cue_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.can_jump_to_prev_cue_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	can_jump_to_prev_cue_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "can_jump_to_prev_cue". C++ signature :  bool can_jump_to_prev_cue_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.capture_and_insert_scene()<Description>Method</Description></Method>
-
-    <Doc>	capture_and_insert_scene( (Song)arg1 [, (int)CaptureMode=Song.CaptureMode.all]) -&gt; None : Capture currently playing clips and insert them as a new scene after the selected scene. Raises a runtime error if creating a new scene would exceed the limitations. C++ signature :  void capture_and_insert_scene(TPyHandle&lt;ASong&gt; [,int=Song.CaptureMode.all])</Doc>
-
-    <Method>Live.Song.Song.capture_midi()<Description>Method</Description></Method>
-
-    <Doc>	capture_midi( (Song)arg1 [, (int)Destination=Song.CaptureDestination.auto]) -&gt; None : Capture recently played MIDI material from audible tracks. If no Destination is given or Destination is set to CaptureDestination.auto, the captured material is inserted into the Session or Arrangement depending on which is visible. If Destination is set to CaptureDestination.session or CaptureDestination.arrangement, inserts the material into Session or Arrangement, respectively. Raises a limitation error when capturing into the Session and a new scene would have to be created but can't because it would exceed the limitations. C++ signature :  void capture_midi(TPyHandle&lt;ASong&gt; [,int=Song.CaptureDestination.auto])</Doc>
-
-    <Method>Live.Song.Song.clip_trigger_quantization_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	clip_trigger_quantization_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "clip_trigger_quantization". C++ signature :  bool clip_trigger_quantization_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.continue_playing()<Description>Method</Description></Method>
-
-    <Doc>	continue_playing( (Song)arg1) -&gt; None : Continue playing the song from the current position C++ signature :  void continue_playing(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.count_in_duration_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	count_in_duration_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "count_in_duration". C++ signature :  bool count_in_duration_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.create_audio_track()<Description>Method</Description></Method>
-
-    <Doc>	create_audio_track( (Song)arg1 [, (object)Index=None]) -&gt; Track : Create a new audio track at the optional given index and return it.If the index is -1, the new track is added at the end. It will create a default audio track if possible. If the index is invalid or the new track would exceed the limitations, a limitation error is raised.If the index is missing, the track is created after the last selected item C++ signature :  TWeakPtr&lt;TTrackPyHandle&gt; create_audio_track(TPyHandle&lt;ASong&gt; [,boost::python::api::object=None])</Doc>
-
-    <Method>Live.Song.Song.create_midi_track()<Description>Method</Description></Method>
-
-    <Doc>	create_midi_track( (Song)arg1 [, (object)Index=None]) -&gt; Track : Create a new midi track at the optional given index and return it.If the index is -1,  the new track is added at the end.It will create a default midi track if possible. If the index is invalid or the new track would exceed the limitations, a limitation error is raised.If the index is missing, the track is created after the last selected item C++ signature :  TWeakPtr&lt;TTrackPyHandle&gt; create_midi_track(TPyHandle&lt;ASong&gt; [,boost::python::api::object=None])</Doc>
-
-    <Method>Live.Song.Song.create_return_track()<Description>Method</Description></Method>
-
-    <Doc>	create_return_track( (Song)arg1) -&gt; Track : Create a new return track at the end and return it. If the new track would exceed  the limitations, a limitation error is raised.  If the maximum number of return tracks is exceeded, a RuntimeError is raised. C++ signature :  TWeakPtr&lt;TTrackPyHandle&gt; create_return_track(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.create_scene()<Description>Method</Description></Method>
-
-    <Doc>	create_scene( (Song)arg1, (int)arg2) -&gt; Scene : Create a new scene at the given index. If the index is -1, the new scene is added at the end. If the index is invalid or the new scene would exceed the limitations, a limitation error is raised. C++ signature :  TWeakPtr&lt;TPyHandle&lt;AScene&gt; &gt; create_scene(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.cue_points_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	cue_points_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "cue_points". C++ signature :  bool cue_points_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.current_song_time_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	current_song_time_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "current_song_time". C++ signature :  bool current_song_time_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.data_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	data_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "data". C++ signature :  bool data_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.delete_return_track()<Description>Method</Description></Method>
-
-    <Doc>	delete_return_track( (Song)arg1, (int)arg2) -&gt; None : Delete the return track with the given index. If no track with this index exists, an exception will be raised. C++ signature :  void delete_return_track(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.delete_scene()<Description>Method</Description></Method>
-
-    <Doc>	delete_scene( (Song)arg1, (int)arg2) -&gt; None : Delete the scene with the given index. If no scene with this index exists, an exception will be raised. C++ signature :  void delete_scene(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.delete_track()<Description>Method</Description></Method>
-
-    <Doc>	delete_track( (Song)arg1, (int)arg2) -&gt; None : Delete the track with the given index. If no track with this index exists, an exception will be raised. C++ signature :  void delete_track(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.duplicate_scene()<Description>Method</Description></Method>
-
-    <Doc>	duplicate_scene( (Song)arg1, (int)arg2) -&gt; None : Duplicates a scene and selects the new one. Raises a limitation error if creating a new scene would exceed the limitations. C++ signature :  void duplicate_scene(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.duplicate_track()<Description>Method</Description></Method>
-
-    <Doc>	duplicate_track( (Song)arg1, (int)arg2) -&gt; None : Duplicates a track and selects the new one. If the track is inside a folded group track, the group track is unfolded. Raises a limitation error if creating a new track would exceed the limitations. C++ signature :  void duplicate_track(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.end_undo_step()<Description>Method</Description></Method>
-
-    <Doc>	end_undo_step( (Song)arg1) -&gt; None : C++ signature :  void end_undo_step(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.exclusive_arm_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	exclusive_arm_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "exclusive_arm". C++ signature :  bool exclusive_arm_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.find_device_position()<Description>Method</Description></Method>
-
-    <Doc>	find_device_position( (Song)arg1, (Device)device, (LomObject)target, (int)target_position) -&gt; int : Returns the closest possible position to the given target, where the device can be inserted. If inserting is not possible at all (i.e. if the device type is wrong), -1 is returned. C++ signature :  int find_device_position(TPyHandle&lt;ASong&gt;,TPyHandle&lt;ADevice&gt;,TPyHandleBase,int)</Doc>
-
-    <Method>Live.Song.Song.force_link_beat_time()<Description>Method</Description></Method>
-
-    <Doc>	force_link_beat_time( (Song)arg1) -&gt; None : Force the Link timeline to jump to Lives current beat time. Danger: This can cause beat time discontinuities in other connected apps. C++ signature :  void force_link_beat_time(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.get_beats_loop_length()<Description>Method</Description></Method>
-
-    <Doc>	get_beats_loop_length( (Song)arg1) -&gt; BeatTime : Get const access to the songs loop length, using a BeatTime class with the current global set signature. C++ signature :  NSongApi::TBeatTime get_beats_loop_length(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.get_beats_loop_start()<Description>Method</Description></Method>
-
-    <Doc>	get_beats_loop_start( (Song)arg1) -&gt; BeatTime : Get const access to the songs loop start, using a BeatTime class with the current global set signature. C++ signature :  NSongApi::TBeatTime get_beats_loop_start(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.get_current_beats_song_time()<Description>Method</Description></Method>
-
-    <Doc>	get_current_beats_song_time( (Song)arg1) -&gt; BeatTime : Get const access to the songs current playing position, using a BeatTime class with the current global set signature. C++ signature :  NSongApi::TBeatTime get_current_beats_song_time(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.get_current_smpte_song_time()<Description>Method</Description></Method>
-
-    <Doc>	get_current_smpte_song_time( (Song)arg1, (int)arg2) -&gt; SmptTime : Get const access to the songs current playing position, by specifying the SMPTE format in which you would like to receive the time. C++ signature :  NSongApi::TSmptTime get_current_smpte_song_time(TPyHandle&lt;ASong&gt;,int)</Doc>
-
-    <Method>Live.Song.Song.get_data()<Description>Method</Description></Method>
-
-    <Doc>	get_data( (Song)arg1, (object)key, (object)default_value) -&gt; object : Get data for the given key, that was previously stored using set_data. C++ signature :  boost::python::api::object get_data(TPyHandle&lt;ASong&gt;,TString,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.groove_amount_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	groove_amount_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "groove_amount". C++ signature :  bool groove_amount_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.is_counting_in_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	is_counting_in_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "is_counting_in". C++ signature :  bool is_counting_in_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.is_cue_point_selected()<Description>Method</Description></Method>
-
-    <Doc>	is_cue_point_selected( (Song)arg1) -&gt; bool : Return true if the global playing pos is currently on a cue point. C++ signature :  bool is_cue_point_selected(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.is_playing_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	is_playing_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "is_playing". C++ signature :  bool is_playing_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.jump_by()<Description>Method</Description></Method>
-
-    <Doc>	jump_by( (Song)arg1, (float)arg2) -&gt; None : Set a new playing pos, relative to the current one. C++ signature :  void jump_by(TPyHandle&lt;ASong&gt;,double)</Doc>
-
-    <Method>Live.Song.Song.jump_to_next_cue()<Description>Method</Description></Method>
-
-    <Doc>	jump_to_next_cue( (Song)arg1) -&gt; None : Jump to the next cue (marker) if possible. C++ signature :  void jump_to_next_cue(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.jump_to_prev_cue()<Description>Method</Description></Method>
-
-    <Doc>	jump_to_prev_cue( (Song)arg1) -&gt; None : Jump to the prior cue (marker) if possible. C++ signature :  void jump_to_prev_cue(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.loop_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	loop_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "loop". C++ signature :  bool loop_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.loop_length_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	loop_length_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "loop_length". C++ signature :  bool loop_length_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.loop_start_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	loop_start_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "loop_start". C++ signature :  bool loop_start_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.metronome_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	metronome_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "metronome". C++ signature :  bool metronome_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.midi_recording_quantization_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	midi_recording_quantization_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "midi_recording_quantization". C++ signature :  bool midi_recording_quantization_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.move_device()<Description>Method</Description></Method>
-
-    <Doc>	move_device( (Song)arg1, (Device)device, (LomObject)target, (int)target_position) -&gt; int : Move a device into the target at the given position, where 0 moves it before the first device and len(devices) moves it to the end of the device chain.If the device cannot be moved to this position, the nearest possible position is chosen. If the device type is not valid, a runtime error is raised.Returns the index, where the device was moved to. C++ signature :  int move_device(TPyHandle&lt;ASong&gt;,TPyHandle&lt;ADevice&gt;,TPyHandleBase,int)</Doc>
-
-    <Method>Live.Song.Song.nudge_down_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	nudge_down_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "nudge_down". C++ signature :  bool nudge_down_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.nudge_up_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	nudge_up_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "nudge_up". C++ signature :  bool nudge_up_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.overdub_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	overdub_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "overdub". C++ signature :  bool overdub_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.play_selection()<Description>Method</Description></Method>
-
-    <Doc>	play_selection( (Song)arg1) -&gt; None : Start playing the current set selection, or do nothing if no selection is set. C++ signature :  void play_selection(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.punch_in_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	punch_in_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "punch_in". C++ signature :  bool punch_in_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.punch_out_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	punch_out_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "punch_out". C++ signature :  bool punch_out_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.re_enable_automation()<Description>Method</Description></Method>
-
-    <Doc>	re_enable_automation( (Song)arg1) -&gt; None : Discards overrides of automated parameters. C++ signature :  void re_enable_automation(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.re_enable_automation_enabled_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	re_enable_automation_enabled_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "re_enable_automation_enabled". C++ signature :  bool re_enable_automation_enabled_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.record_mode_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	record_mode_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "record_mode". C++ signature :  bool record_mode_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.redo()<Description>Method</Description></Method>
-
-    <Doc>	redo( (Song)arg1) -&gt; None : Redo the last action that was undone. C++ signature :  void redo(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.remove_appointed_device_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_appointed_device_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "appointed_device". C++ signature :  void remove_appointed_device_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_arrangement_overdub_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_arrangement_overdub_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "arrangement_overdub". C++ signature :  void remove_arrangement_overdub_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_back_to_arranger_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_back_to_arranger_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "back_to_arranger". C++ signature :  void remove_back_to_arranger_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_can_capture_midi_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_can_capture_midi_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "can_capture_midi". C++ signature :  void remove_can_capture_midi_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_can_jump_to_next_cue_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_can_jump_to_next_cue_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "can_jump_to_next_cue". C++ signature :  void remove_can_jump_to_next_cue_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_can_jump_to_prev_cue_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_can_jump_to_prev_cue_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "can_jump_to_prev_cue". C++ signature :  void remove_can_jump_to_prev_cue_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_clip_trigger_quantization_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_clip_trigger_quantization_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "clip_trigger_quantization". C++ signature :  void remove_clip_trigger_quantization_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_count_in_duration_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_count_in_duration_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "count_in_duration". C++ signature :  void remove_count_in_duration_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_cue_points_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_cue_points_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "cue_points". C++ signature :  void remove_cue_points_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_current_song_time_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_current_song_time_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "current_song_time". C++ signature :  void remove_current_song_time_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_data_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_data_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "data". C++ signature :  void remove_data_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_exclusive_arm_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_exclusive_arm_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "exclusive_arm". C++ signature :  void remove_exclusive_arm_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_groove_amount_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_groove_amount_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "groove_amount". C++ signature :  void remove_groove_amount_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_is_counting_in_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_is_counting_in_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "is_counting_in". C++ signature :  void remove_is_counting_in_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_is_playing_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_is_playing_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "is_playing". C++ signature :  void remove_is_playing_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_loop_length_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_loop_length_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "loop_length". C++ signature :  void remove_loop_length_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_loop_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_loop_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "loop". C++ signature :  void remove_loop_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_loop_start_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_loop_start_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "loop_start". C++ signature :  void remove_loop_start_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_metronome_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_metronome_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "metronome". C++ signature :  void remove_metronome_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_midi_recording_quantization_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_midi_recording_quantization_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "midi_recording_quantization". C++ signature :  void remove_midi_recording_quantization_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_nudge_down_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_nudge_down_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "nudge_down". C++ signature :  void remove_nudge_down_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_nudge_up_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_nudge_up_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "nudge_up". C++ signature :  void remove_nudge_up_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_overdub_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_overdub_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "overdub". C++ signature :  void remove_overdub_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_punch_in_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_punch_in_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "punch_in". C++ signature :  void remove_punch_in_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_punch_out_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_punch_out_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "punch_out". C++ signature :  void remove_punch_out_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_re_enable_automation_enabled_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_re_enable_automation_enabled_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "re_enable_automation_enabled". C++ signature :  void remove_re_enable_automation_enabled_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_record_mode_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_record_mode_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "record_mode". C++ signature :  void remove_record_mode_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_return_tracks_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_return_tracks_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "return_tracks". C++ signature :  void remove_return_tracks_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_root_note_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_root_note_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "root_note". C++ signature :  void remove_root_note_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_scale_intervals_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_scale_intervals_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "scale_intervals". C++ signature :  void remove_scale_intervals_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_scale_name_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_scale_name_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "scale_name". C++ signature :  void remove_scale_name_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_scenes_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_scenes_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "scenes". C++ signature :  void remove_scenes_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_session_automation_record_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_session_automation_record_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "session_automation_record". C++ signature :  void remove_session_automation_record_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_session_record_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_session_record_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "session_record". C++ signature :  void remove_session_record_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_session_record_status_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_session_record_status_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "session_record_status". C++ signature :  void remove_session_record_status_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_signature_denominator_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_signature_denominator_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "signature_denominator". C++ signature :  void remove_signature_denominator_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_signature_numerator_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_signature_numerator_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "signature_numerator". C++ signature :  void remove_signature_numerator_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_song_length_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_song_length_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "song_length". C++ signature :  void remove_song_length_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_swing_amount_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_swing_amount_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "swing_amount". C++ signature :  void remove_swing_amount_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_tempo_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_tempo_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "tempo". C++ signature :  void remove_tempo_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_tracks_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_tracks_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "tracks". C++ signature :  void remove_tracks_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.remove_visible_tracks_listener()<Description>Method</Description></Method>
-
-    <Doc>	remove_visible_tracks_listener( (Song)arg1, (object)arg2) -&gt; None : Remove a previously set listener function or method from property "visible_tracks". C++ signature :  void remove_visible_tracks_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.return_tracks_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	return_tracks_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "return_tracks". C++ signature :  bool return_tracks_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.root_note_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	root_note_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "root_note". C++ signature :  bool root_note_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.scale_intervals_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	scale_intervals_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "scale_intervals". C++ signature :  bool scale_intervals_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.scale_name_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	scale_name_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "scale_name". C++ signature :  bool scale_name_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.scenes_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	scenes_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "scenes". C++ signature :  bool scenes_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.scrub_by()<Description>Method</Description></Method>
-
-    <Doc>	scrub_by( (Song)arg1, (float)arg2) -&gt; None : Same as jump_by, but does not stop playback. C++ signature :  void scrub_by(TPyHandle&lt;ASong&gt;,double)</Doc>
-
-    <Method>Live.Song.Song.session_automation_record_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	session_automation_record_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "session_automation_record". C++ signature :  bool session_automation_record_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.session_record_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	session_record_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "session_record". C++ signature :  bool session_record_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.session_record_status_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	session_record_status_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "session_record_status". C++ signature :  bool session_record_status_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.set_data()<Description>Method</Description></Method>
-
-    <Doc>	set_data( (Song)arg1, (object)key, (object)value) -&gt; None : Store data for the given key in this object. The data is persistent and will be restored when loading the Live Set. C++ signature :  void set_data(TPyHandle&lt;ASong&gt;,TString,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.set_or_delete_cue()<Description>Method</Description></Method>
-
-    <Doc>	set_or_delete_cue( (Song)arg1) -&gt; None : When a cue is selected, it gets deleted. If no cue is selected, a new cue is created at the current global songtime. C++ signature :  void set_or_delete_cue(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.signature_denominator_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	signature_denominator_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "signature_denominator". C++ signature :  bool signature_denominator_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.signature_numerator_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	signature_numerator_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "signature_numerator". C++ signature :  bool signature_numerator_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.song_length_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	song_length_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "song_length". C++ signature :  bool song_length_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.start_playing()<Description>Method</Description></Method>
-
-    <Doc>	start_playing( (Song)arg1) -&gt; None : Start playing from the startmarker C++ signature :  void start_playing(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.stop_all_clips()<Description>Method</Description></Method>
-
-    <Doc>	stop_all_clips( (Song)arg1 [, (bool)Quantized=True]) -&gt; None : Stop all playing Clips (if any) but continue playing the Song. C++ signature :  void stop_all_clips(TPyHandle&lt;ASong&gt; [,bool=True])</Doc>
-
-    <Method>Live.Song.Song.stop_playing()<Description>Method</Description></Method>
-
-    <Doc>	stop_playing( (Song)arg1) -&gt; None : Stop playing the Song. C++ signature :  void stop_playing(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.swing_amount_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	swing_amount_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "swing_amount". C++ signature :  bool swing_amount_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.tap_tempo()<Description>Method</Description></Method>
-
-    <Doc>	tap_tempo( (Song)arg1) -&gt; None : Trigger the tap tempo function. C++ signature :  void tap_tempo(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.tempo_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	tempo_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "tempo". C++ signature :  bool tempo_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.tracks_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	tracks_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "tracks". C++ signature :  bool tracks_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-
-    <Method>Live.Song.Song.trigger_session_record()<Description>Method</Description></Method>
-
-    <Doc>	trigger_session_record( (Song)self [, (float)record_length=1.7976931348623157e+308]) -&gt; None : Triggers a new session recording. C++ signature :  void trigger_session_record(TPyHandle&lt;ASong&gt; [,double=1.7976931348623157e+308])</Doc>
-
-    <Method>Live.Song.Song.undo()<Description>Method</Description></Method>
-
-    <Doc>	undo( (Song)arg1) -&gt; None : Undo the last action that was made. C++ signature :  void undo(TPyHandle&lt;ASong&gt;)</Doc>
-
-    <Method>Live.Song.Song.visible_tracks_has_listener()<Description>Method</Description></Method>
-
-    <Doc>	visible_tracks_has_listener( (Song)arg1, (object)arg2) -&gt; bool : Returns true, if the given listener function or method is connected to the property "visible_tracks". C++ signature :  bool visible_tracks_has_listener(TPyHandle&lt;ASong&gt;,boost::python::api::object)</Doc>
-    """
 
     @property
     def _live_ptr(self) -> int:
@@ -1297,3 +739,986 @@ class Song:
         """
         return Vector()
 
+    def add_appointed_device_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "appointed_device". The listener is called when the appointed device changes.
+        """
+        return
+
+    def add_arrangement_overdub_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "arrangement_overdub". The listener is called when the arrangement overdub status changes.
+        """
+        return
+
+    def add_back_to_arranger_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "back_to_arranger". The listener is called when the back to arrangement status changes.
+        """
+        return
+
+    def add_can_capture_midi_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "can_capture_midi". The listener is called when the capture midi status changes.
+        """
+        return
+
+    def add_can_jump_to_next_cue_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "can_jump_to_next_cue". The listener is called when the can jump to next cue status changes.
+        """
+        return
+
+    def add_can_jump_to_prev_cue_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "can_jump_to_prev_cue". The listener is called when the can jump to previous cue status changes.
+        """
+        return
+
+    def add_clip_trigger_quantization_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "clip_trigger_quantization". The listener is called when the clip trigger quantization changes.
+        """
+        return
+
+    def add_count_in_duration_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "count_in_duration". The listener is called when the count in duration changes.
+        """
+        return
+
+    def add_cue_points_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "cue_points". The listener is called when the cue points change.
+        """
+        return
+
+    def add_current_song_time_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "current_song_time". The listener is called when the current song time changes.
+        """
+        return
+
+    def add_data_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "data". The listener is called when the data changes.
+        """
+        return
+
+    def add_exclusive_arm_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "exclusive_arm". The listener is called when the exclusive arm status changes.
+        """
+        return
+
+    def add_groove_amount_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "groove_amount". The listener is called when the groove amount changes.
+        """
+        return
+
+    def add_is_counting_in_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "is_counting_in". The listener is called when the count in status changes.
+        """
+        return
+
+    def add_is_playing_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "is_playing". The listener is called when the playing status changes.
+        """
+        return
+
+    def add_loop_length_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "loop_length". The listener is called when the loop length changes.
+        """
+        return
+
+    def add_loop_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "loop". The listener is called when the loop status changes.
+        """
+        return
+
+    def add_loop_start_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "loop_start". The listener is called when the loop start changes.
+        """
+        return
+
+    def add_metronome_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "metronome". The listener is called when the metronome status changes.
+        """
+        return
+
+    def add_midi_recording_quantization_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "midi_recording_quantization". The listener is called when the midi recording quantization changes.
+        """
+        return
+
+    def add_nudge_down_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "nudge_down". The listener is called when the nudge down status changes.
+        """
+        return
+
+    def add_nudge_up_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "nudge_up". The listener is called when the nudge up status changes.
+        """
+        return
+
+    def add_overdub_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "overdub". The listener is called when the overdub status changes.
+        """
+        return
+
+    def add_punch_in_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "punch_in". The listener is called when the punch in status changes.
+        """
+        return
+
+    def add_punch_out_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "punch_out". The listener is called when the punch out status changes.
+        """
+        return
+
+    def add_re_enable_automation_enabled_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "re_enable_automation_enabled". The listener is called when the re enable automation status changes.
+        """
+        return
+
+    def add_record_mode_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "record_mode". The listener is called when the record mode changes.
+        """
+        return
+
+    def add_return_tracks_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "return_tracks". The listener is called when the return tracks change.
+        """
+        return
+
+    def add_root_note_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "root_note". The listener is called when the root note changes.
+        """
+        return
+
+    def add_scale_intervals_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "scale_intervals". The listener is called when the scale intervals change.
+        """
+        return
+
+    def add_scale_name_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "scale_name". The listener is called when the scale name changes.
+        """
+        return
+
+    def add_scenes_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "scenes". The listener is called when the scenes change.
+        """
+        return
+
+    def add_session_automation_record_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "session_automation_record". The listener is called when the session automation record status changes.
+        """
+        return
+
+    def add_session_record_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "session_record". The listener is called when the session record status changes.
+        """
+        return
+
+    def add_session_record_status_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "session_record_status". The listener is called when the session record status changes.
+        """
+        return
+
+    def add_signature_denominator_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "signature_denominator". The listener is called when the signature denominator changes.
+        """
+        return
+
+    def add_signature_numerator_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "signature_numerator". The listener is called when the signature numerator changes.
+        """
+        return
+
+    def add_song_length_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "song_length". The listener is called when the song length changes.
+        """
+        return
+
+    def add_swing_amount_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "swing_amount". The listener is called when the swing amount changes.
+        """
+        return
+
+    def add_tempo_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "tempo". The listener is called when the tempo changes.
+        """
+        return
+
+    def add_tracks_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "tracks". The listener is called when the tracks change.
+        """
+        return
+
+    def add_visible_tracks_listener(self, arg2: Callable):
+        """
+        Add a listener to the property "visible_tracks". The listener is called when the visible tracks change.
+        """
+        return
+
+    def appointed_device_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "appointed_device".
+        """
+        return False
+
+    def arrangement_overdub_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "arrangement_overdub".
+        """
+        return False
+
+    def back_to_arranger_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "back_to_arranger".
+        """
+        return False
+
+    def can_capture_midi_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "can_capture_midi".
+        """
+        return False
+
+    def can_jump_to_next_cue_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "can_jump_to_next_cue".
+        """
+        return False
+
+    def can_jump_to_prev_cue_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "can_jump_to_prev_cue".
+        """
+        return False
+
+    def capture_midi(self, destination: int = CaptureMode.all):
+        """
+        Capture the current MIDI input.
+        """
+        return
+
+    def clip_trigger_quantization_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "clip_trigger_quantization".
+        """
+        return False
+
+    def continue_playing(self):
+        """
+        Continue playing the song from the current position.
+        """
+        return
+
+    def count_in_duration_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "count_in_duration".
+        """
+        return False
+
+    def create_audio_track(self, index: int = None) -> Track:
+        """
+        Create a new audio track at the given index.
+        """
+        return Track()
+
+    def create_midi_track(self, index: int = None) -> Track:
+        """
+        Create a new MIDI track at the given index.
+        """
+        return Track()
+
+    def create_return_track(self) -> Track:
+        """
+        Create a new return track.
+        """
+        return Track()
+
+    def create_scene(self, arg2: int) -> Scene:
+        """
+        Create a new scene at the given index.
+        """
+        return Scene
+
+    def cue_points_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "cue_points".
+        """
+        return False
+
+    def current_song_time_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "current_song_time".
+        """
+        return False
+
+    def data_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "data".
+        """
+        return False
+
+    def delete_return_track(self, arg2: Track):
+        """
+        Delete the given return track.
+        """
+        return
+
+    def delete_scene(self, arg2: Scene):
+        """
+        Delete the given scene.
+        """
+        return
+
+    def delete_track(self, arg2: Track):
+        """
+        Delete the given track.
+        """
+        return
+
+    def duplicate_scene(self, arg2: Scene):
+        """
+        Duplicate the given scene.
+        """
+        return
+
+    def duplicate_track(self, arg2: Track):
+        """
+        Duplicate the given track.
+        """
+        return
+
+    def end_undo_step(self):
+        """
+        End the current undo step.
+        """
+        return
+
+    def exclusive_arm_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "exclusive_arm".
+        """
+        return False
+
+    def find_device(self, device: Device, target, target_position: int) -> int:
+        """
+        Returns the closest possible position to the given target, where the device can be inserted.
+        If inserting is not possible at all (i.e. if the device type is wrong), -1 is returned.
+        """
+        return 0
+
+    def force_link_beat_time(self):
+        """
+        Force the Link timeline to jump to Lives current beat time. Danger: This can cause beat time discontinuities in other connected apps.
+        """
+        return
+
+    def get_beats_loop_length(self) -> BeatTime:
+        """
+        Get const access to the songs loop length, using a BeatTime class with the current global set signature.
+        """
+        return BeatTime()
+
+    def get_beats_loop_start(self) -> BeatTime:
+        """
+        Get const access to the songs loop start, using a BeatTime class with the current global set signature.
+        """
+        return BeatTime()
+
+    def get_current_beats_song_time(self) -> BeatTime:
+        """
+        Get const access to the songs current time, using a BeatTime class with the current global set signature.
+        """
+        return BeatTime()
+
+    def get_current_smpte_song_time(self, arg2: int) -> SmptTime:
+        """
+        Get const access to the songs current playing position, by specifying the SMPTE format in which you would like to receive the time.
+        """
+        return SmptTime()
+
+    def get_data(self, arg2) -> bool:
+        """
+        Get data for the given key, that was previously stored using set_data.
+        """
+        return False
+
+    def groove_amount_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "groove_amount".
+        """
+        return False
+
+    def is_counting_in_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "is_counting_in".
+        """
+        return False
+
+    def is_cue_point_selected(self) -> bool:
+        """
+        Returns true, if a cue point is selected.
+        """
+        return False
+
+    def is_playing_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "is_playing".
+        """
+        return False
+
+    def jump_by(self, arg2: float):
+        """
+        Set a new playing pos, relative to the current one.
+        """
+        return
+
+    def jump_to_next_cue(self):
+        """
+        Jump to the next cue point.
+        """
+        return
+
+    def jump_to_prev_cue(self):
+        """
+        Jump to the previous cue point.
+        """
+        return
+
+    def loop_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "loop".
+        """
+        return False
+
+    def loop_length_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "loop_length".
+        """
+        return False
+
+    def loop_start_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "loop_start".
+        """
+        return False
+
+    def metronome_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "metronome".
+        """
+        return False
+
+    def midi_recording_quantization_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "midi_recording_quantization".
+        """
+        return False
+
+    def move_device(self, device: Device, target, target_position: int) -> int:
+        """
+        Move a device into the target at the given position, where 0 moves it before the first device and len(devices) moves it to the end of the device chain.
+        If the device cannot be moved to this position, the nearest possible position is chosen.
+        If the device type is not valid, a runtime error is raised.Returns the index, where the device was moved to.
+        """
+        return 0
+
+    def nudge_down_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "nudge_down".
+        """
+        return False
+
+    def nudge_up_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "nudge_up".
+        """
+        return False
+
+    def overdub_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "overdub".
+        """
+        return False
+
+    def play_selection(self):
+        """
+        Start playing the current set selection, or do nothing if no selection is set.
+        """
+        return
+
+    def punch_in_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "punch_in".
+        """
+        return False
+
+    def punch_out_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "punch_out".
+        """
+        return False
+
+    def re_enable_automation(self):
+        """
+        Discards overrides of automated parameters.
+        """
+        return
+
+    def re_enable_automation_enabled_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "re_enable_automation_enabled".
+        """
+        return False
+
+    def record_mode_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "record_mode".
+        """
+        return False
+
+    def redo(self):
+        """
+        Redo the last action that was undone.
+        """
+        return
+
+    def remove_appointed_device_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "appointed_device".
+        """
+        return
+
+    def remove_arrangement_overdub_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "arrangement_overdub".
+        """
+        return
+
+    def remove_back_to_arranger_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "back_to_arranger".
+        """
+        return
+
+    def remove_can_capture_midi_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "can_capture_midi".
+        """
+        return
+
+    def remove_can_jump_to_next_cue_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "can_jump_to_next_cue".
+        """
+        return
+
+    def remove_can_jump_to_prev_cue_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "can_jump_to_prev_cue".
+        """
+        return
+
+    def remove_clip_trigger_quantization_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "clip_trigger_quantization".
+        """
+        return
+
+    def remove_count_in_duration_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "count_in_duration".
+        """
+        return
+
+    def remove_cue_points_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "cue_points".
+        """
+        return
+
+    def remove_current_song_time_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "current_song_time".
+        """
+        return
+
+    def remove_data_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "data".
+        """
+        return
+
+    def remove_exclusive_arm_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "exclusive_arm".
+        """
+        return
+
+    def remove_groove_amount_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "groove_amount".
+        """
+        return
+
+    def remove_is_counting_in_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "is_counting_in".
+        """
+        return
+
+    def remove_is_playing_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "is_playing".
+        """
+        return
+
+    def remove_loop_length_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "loop_length".
+        """
+        return
+
+    def remove_loop_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "loop".
+        """
+        return
+
+    def remove_loop_start_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "loop_start".
+        """
+        return
+
+    def remove_metronome_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "metronome".
+        """
+        return
+
+    def remove_midi_recording_quantization_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "midi_recording_quantization".
+        """
+        return
+
+    def remove_nudge_down_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "nudge_down".
+        """
+        return
+
+    def remove_nudge_up_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "nudge_up".
+        """
+        return
+
+    def remove_overdub_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "overdub".
+        """
+        return
+
+    def remove_punch_in_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "punch_in".
+        """
+        return
+
+    def remove_punch_out_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "punch_out".
+        """
+        return
+
+    def remove_re_enable_automation_enabled_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "re_enable_automation_enabled".
+        """
+        return
+
+    def remove_record_mode_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "record_mode".
+        """
+        return
+
+    def remove_return_tracks_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "return_tracks".
+        """
+        return
+
+    def remove_root_note_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "root_note".
+        """
+        return
+
+    def remove_scale_intervals_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "scale_intervals".
+        """
+        return
+
+    def remove_scale_name_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "scale_name".
+        """
+        return
+
+    def remove_scenes_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "scenes".
+        """
+        return
+
+    def remove_session_automation_record_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "session_automation_record".
+        """
+        return
+
+    def remove_session_record_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "session_record".
+        """
+        return
+
+    def remove_session_record_status_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "session_record_status".
+        """
+        return
+
+    def remove_signature_denominator_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "signature_denominator".
+        """
+        return
+
+    def remove_signature_numerator_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "signature_numerator".
+        """
+        return
+
+    def remove_song_length_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "song_length".
+        """
+        return
+
+    def remove_swing_amount_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "swing_amount".
+        """
+        return
+
+    def remove_tempo_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "tempo".
+        """
+        return
+
+    def remove_tracks_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "tracks".
+        """
+        return
+
+    def remove_visible_tracks_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "visible_tracks".
+        """
+        return
+
+    def return_tracks_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "return_tracks".
+        """
+        return False
+
+    def root_note_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "root_note".
+        """
+        return False
+
+    def scale_intervals_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "scale_intervals".
+        """
+        return False
+
+    def scale_name_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "scale_name".
+        """
+        return False
+
+    def scenes_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "scenes".
+        """
+        return False
+
+    def scrub_by(self, arg2: float):
+        """
+        Same as jump_by, but does not stop playback.
+        """
+        return
+
+    def session_automation_record_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "session_automation_record".
+        """
+        return False
+
+    def session_record_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "session_record".
+        """
+        return False
+
+    def session_record_status_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "session_record_status".
+        """
+        return False
+
+    def set_data(self, key, value):
+        """
+        Store data for the given key in this object. The data is persistent and will be restored when loading the Live Set.
+        """
+        return
+
+    def set_or_delete_cue(self):
+        """
+        When a cue is selected, it gets deleted. If no cue is selected, a new cue is created at the current global songtime.
+        """
+        return
+
+    def signature_denominator_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "signature_denominator".
+        """
+        return False
+
+    def signature_numerator_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "signature_numerator".
+        """
+        return False
+
+    def song_length_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "song_length".
+        """
+        return False
+
+    def start_playing(self):
+        """
+        Start playing from the startmarker.
+        """
+        return
+
+    def stop_all_clips(self, quantized: bool = True):
+        """
+        Stop all playing Clips (if any) but continue playing the Song.
+        """
+        return
+
+    def stop_playing(self):
+        """
+        Stop playing the Song.
+        """
+        return
+
+    def swing_amount_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "swing_amount".
+        """
+        return False
+
+    def tap_tempo(self):
+        """
+        Trigger the tap tempo function.
+        """
+        return
+
+    def tempo_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "tempo".
+        """
+        return False
+
+    def tracks_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "tracks".
+        """
+        return False
+
+    def trigger_session_record(self, record_length: float = 1.7976931348623157e+308):
+        """
+        Triggers a new session recording.
+        """
+        return
+
+    def undo(self):
+        """
+        Undo the last action that was made.
+        """
+        return
+
+    def visible_tracks_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "visible_tracks".
+        """
+        return False
+
+
+class TimeFormat:
+    ms_time = 0
+    smpte_24 = 0
+    smpte_25 = 0
+    smpte_29 = 0
+    smpte_30 = 0
+    smpte_30_drop = 0
