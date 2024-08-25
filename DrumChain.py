@@ -1,5 +1,5 @@
-﻿from typing import Callable
-
+﻿# All referenced (missing descriptions)
+from typing import Callable
 from Live.Chain import Chain
 
 
@@ -57,4 +57,3 @@ class DrumChain(Chain):
         Remove a previously set listener function or method from property "out_note".
         """
         return
-    
