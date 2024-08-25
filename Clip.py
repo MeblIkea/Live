@@ -1,0 +1,2 @@
+﻿class Clip:
+    pass

@@ -238,18 +238,18 @@ class Song:
             return
 
         @property
-        def selected_scene(self):
+        def selected_scene(self) -> Scene:
             """
             Get/Set the currently selected scene in Live's Session view.
             """
-            return
+            return Scene()
 
         @property
-        def selected_track(self):
+        def selected_track(self) -> Track:
             """
             Get/Set the currently selected Track in Live's Session or Arrangement view.
             """
-            return
+            return Track()
 
         def add_detail_clip_listener(self, arg2: Any) -> None:
             """
