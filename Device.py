@@ -26,12 +26,14 @@ class Device:
             """
             return 0
 
+        @property
         def canonical_parent(self):
             """
             Get the canonical parent of the Device.View.
             """
             return None
 
+        @property
         def is_collapsed(self) -> bool:
             """
             Get/Set/Listen if the device view is collapsed.

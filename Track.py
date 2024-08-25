@@ -1,7 +1,6 @@
-﻿from typing import Any, Callable
-
+﻿# All referenced (missing descriptions)
+from typing import Any, Callable
 from typing_extensions import deprecated
-
 from Live.Base import Vector
 from Live.Clip import Clip
 from Live.ClipSlot import ClipSlot
@@ -1202,5 +1201,245 @@ class Track:
     def remove_available_output_routing_types_listener(self, arg2: Callable):
         """
         Remove a previously set listener function or method from property "available_output_routing_types".
+        """
+        return
+
+    def remove_clip_slots_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "clip_slots".
+        """
+        return
+
+    def remove_color_index_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "color_index".
+        """
+        return
+
+    def remove_color_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "color".
+        """
+        return
+
+    def remove_current_input_routing_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "current_input_routing".
+        """
+        return
+
+    def remove_current_input_sub_routing_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "current_input_sub_routing".
+        """
+        return
+
+    def remove_current_monitoring_state_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "current_monitoring_state".
+        """
+        return
+
+    def remove_current_output_routing_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "current_output_routing".
+        """
+        return
+
+    def remove_current_output_sub_routing_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "current_output_sub_routing".
+        """
+        return
+
+    def remove_data_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "data".
+        """
+        return
+
+    def remove_devices_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "devices".
+        """
+        return
+
+    def remove_fired_slot_index_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "fired_slot_index".
+        """
+        return
+
+    def remove_has_audio_input_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "has_audio_input".
+        """
+        return
+
+    def remove_has_audio_output_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "has_audio_output".
+        """
+        return
+
+    def remove_has_midi_input_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "has_midi_input".
+        """
+        return
+
+    def remove_has_midi_output_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "has_midi_output".
+        """
+        return
+
+    def remove_implicit_arm_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "implicit_arm".
+        """
+        return
+
+    def remove_input_meter_left_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_meter_left".
+        """
+        return
+
+    def remove_input_meter_level_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_meter_level".
+        """
+        return
+
+    def remove_input_meter_right_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_meter_right".
+        """
+        return
+
+    def remove_input_routing_channel_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_routing_channel".
+        """
+        return
+
+    def remove_input_routing_type_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_routing_type".
+        """
+        return
+
+    def remove_input_routings_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_routings".
+        """
+        return
+
+    def remove_input_sub_routings_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "input_sub_routings".
+        """
+        return
+
+    def remove_is_frozen_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "is_frozen".
+        """
+        return
+
+    def remove_is_showing_chains_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "is_showing_chains".
+        """
+        return
+
+    def remove_mute_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "mute".
+        """
+        return
+
+    def remove_muted_via_solo_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "muted_via_solo".
+        """
+        return
+
+    def remove_name_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "name".
+        """
+        return
+
+    def remove_output_meter_left_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_meter_left".
+        """
+        return
+
+    def remove_output_meter_level_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_meter_level".
+        """
+        return
+
+    def remove_output_meter_right_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_meter_right".
+        """
+        return
+
+    def remove_output_routing_channel_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_routing_channel".
+        """
+        return
+
+    def remove_output_routing_type_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_routing_type".
+        """
+        return
+
+    def remove_output_routings_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_routings".
+        """
+        return
+
+    def remove_output_sub_routings_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "output_sub_routings".
+        """
+        return
+
+    def remove_playing_slot_index_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "playing_slot_index".
+        """
+        return
+
+    def remove_solo_listener(self, arg2: Callable):
+        """
+        Remove a previously set listener function or method from property "solo".
+        """
+        return
+
+    def set_data(self, key, value):
+        """
+        Store data for the given key in this object. The data is persistent and will be restored when loading the Live Set.
+        """
+        return
+
+    def solo_has_listener(self, arg2: Callable) -> bool:
+        """
+        Returns true, if the given listener function or method is connected to the property "solo".
+        """
+        return False
+
+    def stop_all_clips(self, quantized: bool = True):
+        """
+        Stop running and triggered clip and slots on this track.
         """
         return
