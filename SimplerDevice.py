@@ -1,4 +1,4 @@
-﻿# Have to do simpledevice.view
+﻿# All referenced (missing descriptions)
 from typing import Callable
 from Live.Base import IntVector
 from Live.Device import Device
@@ -27,6 +27,219 @@ class SimplerDevice(Device):
     """
     This class represents a Simpler device.
     """
+    class View(Device.View):
+        """
+        Representing the view aspects of a simpler device.
+        """
+        @property
+        def sample_end(self) -> int:
+            """
+            :return: Access to the modulated samples end position in samples.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def sample_env_fade_in(self) -> int:
+            """
+            :return: Access to the envelope fade-in time in samples.
+            Returned value is only in use when Simpler is in one-shot mode.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def sample_env_fade_out(self) -> int:
+            """
+            :return: Access to the envelope fade-out time in samples.
+            Returned value is only in use when Simpler is in one-shot mode.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def sample_loop_end(self) -> int:
+            """
+            :return: Access to the modulated samples loop end position in samples.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def sample_loop_fade(self) -> int:
+            """
+            :return: Access to the modulated samples loop fade position in samples.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def sample_loop_start(self) -> int:
+            """
+            :return: Access to the modulated samples loop start position in samples.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def sample_start(self) -> int:
+            """
+            :return: Access to the modulated samples start position in samples.
+            Returns -1 in case there is no sample loaded.
+            """
+            return 0
+
+        @property
+        def selected_slice(self) -> int:
+            """
+            :return: Access to the selected slice.
+            """
+            return 0
+
+        def add_sample_end_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_end" has changed.
+            """
+            return
+
+        def add_sample_env_fade_in_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_env_fade_in" has changed.
+            """
+            return
+
+        def add_sample_env_fade_out_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_env_fade_out" has changed.
+            """
+            return
+
+        def add_sample_loop_end_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_loop_end" has changed.
+            """
+            return
+
+        def add_sample_loop_fade_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_loop_fade" has changed.
+            """
+            return
+
+        def add_sample_loop_start_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_loop_start" has changed.
+            """
+            return
+
+        def add_sample_start_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "sample_start" has changed.
+            """
+            return
+
+        def add_selected_slice_listener(self, arg2: Callable):
+            """
+            Add a listener function or method, which will be called as soon as the property "selected_slice" has changed.
+            """
+            return
+
+        def remove_sample_end_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_end".
+            """
+            return
+
+        def remove_sample_env_fade_in_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_env_fade_in".
+            """
+            return
+
+        def remove_sample_env_fade_out_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_env_fade_out".
+            """
+            return
+
+        def remove_sample_loop_end_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_loop_end".
+            """
+            return
+
+        def remove_sample_loop_fade_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_loop_fade".
+            """
+            return
+
+        def remove_sample_loop_start_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_loop_start".
+            """
+            return
+
+        def remove_sample_start_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "sample_start".
+            """
+            return
+
+        def remove_selected_slice_listener(self, arg2: Callable):
+            """
+            Remove a previously set listener function or method from property "selected_slice".
+            """
+            return
+
+        def sample_end_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_end".
+            """
+            return False
+
+        def sample_env_fade_in_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_env_fade_in".
+            """
+            return False
+
+        def sample_env_fade_out_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_env_fade_out".
+            """
+            return False
+
+        def sample_loop_end_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_loop_end".
+            """
+            return False
+
+        def sample_loop_fade_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_loop_fade".
+            """
+            return False
+
+        def sample_loop_start_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_loop_start".
+            """
+            return False
+
+        def sample_start_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "sample_start".
+            """
+            return False
+
+        def selected_slice_has_listener(self, arg2: Callable) -> bool:
+            """
+            Returns true, if the given listener function or method is connected to the property "selected_slice".
+            """
+            return False
+
     @property
     def can_warp_as(self) -> bool:
         """
